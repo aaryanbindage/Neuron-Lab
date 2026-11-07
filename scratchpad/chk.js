@@ -46,7 +46,7 @@ const SCN = {
     hint:'Set both inputs to 1 for ON. The bias of −1.5 means one input alone is not enough, so it behaves like AND.'},
   free:{name:'Free play', labels:['Input 1','Input 2'], v:{x1:.5,x2:.5,w1:1,w2:-1,b:0,act:'tanh'},
     yes:'Neuron fires', no:'Neuron stays quiet',
-    hint:'No rules here. A negative weight makes an input push the neuron toward silence.'}
+    hint:'No rules. A negative weight makes an input push the neuron toward silence.'}
 };
 const N = {scn:'walk', x1:0,x2:0,w1:0,w2:0,b:0,act:'sigmoid'};
 
