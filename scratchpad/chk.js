@@ -39,7 +39,7 @@ const ACT = {
 };
 const SCN = {
   walk:{name:'Should I go for a walk?', labels:['Sunny','Free time'], v:{x1:.8,x2:.6,w1:1.5,w2:1,b:-1.2,act:'sigmoid'},
-    yes:'Go for a walk', no:'Stay inside',
+    yes:'Go walk', no:'Stay inside',
     hint:'Both inputs push toward yes. Try raising the bias: the neuron becomes keen even on a gloomy day.'},
   and:{name:'Logic gate: AND', labels:['Input A','Input B'], v:{x1:1,x2:1,w1:1,w2:1,b:-1.5,act:'step'},
     yes:'Output ON', no:'Output OFF',
