@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Neuron Lab Works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#edf0f6; --surface:#fbfcff; --ink:#14213d; --muted:#5a6682; --line:#d3d9e6;
+  --blue:#2d6cdf; --orange:#e5791a; --soft:#e4e9f4;
+  --display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --body:'Figtree','Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root{
+  color-scheme:dark;
+  --bg:#0d1322; --surface:#151c31; --ink:#e7ecf8; --muted:#97a3c0; --line:#28324f;
+  --blue:#6b95ff; --orange:#ff9d4d; --soft:#1d2640}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.65 var(--body);margin:0;padding:24px 16px 72px}
+.wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2{font-family:var(--display);line-height:1.1;margin:0;text-wrap:balance}
+h1{font-size:clamp(32px,6vw,48px);font-weight:800;letter-spacing:-.02em}
+h2{font-size:26px;font-weight:800;letter-spacing:-.01em}
+p{margin:0}
+section{display:flex;flex-direction:column;gap:14px}
+.top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:15px}
+a{color:var(--blue);font-weight:600}
+a.btn{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;border-radius:9px;padding:10px 16px;align-self:flex-start}
+@media (prefers-color-scheme:dark){a.btn{color:#0d1322}}
+.lede{color:var(--muted);font-size:19px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+code,.eq{font-family:var(--mono);font-size:15px}
+.eq{background:var(--soft);border-radius:10px;padding:12px 14px;overflow-x:auto;white-space:pre}
+.row2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.row2 .card h3{margin:0 0 4px;font:800 18px var(--display)}
+.row2 .card p{font-size:15px;color:var(--muted)}
+svg{width:100%;height:auto;display:block}
+svg text{font-family:var(--body);fill:var(--ink)}
+svg .m{font-family:var(--mono)}
+ul{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px}
+.blue{color:var(--blue);font-weight:600}.orange{color:var(--orange);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="index.html">← Back to Neuron Lab</a><a href="https://github.com/aaryanbindage/Neuron-Lab">Source on GitHub</a></div>
+
+  <section>
+    <h1>How Neuron Lab works</h1>
+    <p class="lede">Neuron Lab is a small, visual neural network you can poke at. This page explains what you are looking at, from one neuron up to a network that learns.</p>
+    <a class="btn" href="index.html">Open the app</a>
+  </section>
+
+  <section>
+    <h2>A neuron is a tiny decision maker</h2>
+    <p>An artificial neuron takes some numbers in and gives one number out. In between it does three things.</p>
+    <div class="card">
+      <svg viewBox="0 0 640 210" role="img" aria-label="Two inputs feed a neuron through weights, a bias is added, an activation function produces the output">
+        <line x1="90" y1="55" x2="300" y2="105" stroke="var(--blue)" stroke-width="5" stroke-linecap="round"/>
+        <line x1="90" y1="155" x2="300" y2="105" stroke="var(--orange)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="300" y1="105" x2="530" y2="105" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="70" cy="55" r="30" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/><text x="70" y="61" text-anchor="middle" class="m" font-size="17">x₁</text>
+        <circle cx="70" cy="155" r="30" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/><text x="70" y="161" text-anchor="middle" class="m" font-size="17">x₂</text>
+        <circle cx="320" cy="105" r="52" fill="var(--surface)" stroke="var(--ink)" stroke-width="3"/><text x="320" y="118" text-anchor="middle" font-size="40">Σ</text>
+        <circle cx="560" cy="105" r="30" fill="var(--surface)" stroke="var(--ink)" stroke-width="2.5"/><text x="560" y="111" text-anchor="middle" class="m" font-size="17">out</text>
+        <text x="190" y="62" text-anchor="middle" class="m" font-size="14">× w₁</text>
+        <text x="190" y="160" text-anchor="middle" class="m" font-size="14">× w₂</text>
+        <text x="320" y="20" text-anchor="middle" class="m" font-size="14">+ bias</text>
+        <text x="440" y="92" text-anchor="middle" class="m" font-size="14">activation</text>
+      </svg>
+    </div>
+    <ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px">
+      <li><b>Weigh.</b> Multiply each input by its weight. A big weight means that input matters a lot. A negative weight argues against firing.</li>
+      <li><b>Sum.</b> Add the results together with a bias, a fixed nudge that makes the neuron more or less eager.</li>
+      <li><b>Squash.</b> Pass the sum through an activation function to get the output.</li>
+    </ol>
+    <div class="eq">z   = x₁·w₁ + x₂·w₂ + bias
+out = activation(z)</div>
+    <p>The first tab of the app shows exactly this, with the real arithmetic printed next to the diagram. Line thickness is the size of a weight, <span class="blue">blue</span> is positive and <span class="orange">orange</span> is negative.</p>
+  </section>
+
+  <section>
+    <h2>Activation functions</h2>
+    <p>Without an activation function a network could only ever do multiplication and addition, no matter how big it was. The activation adds the bend that lets it model interesting things.</p>
+    <div class="row2">
+      <div class="card"><h3>Step</h3><p>Off below zero, on at zero or above. Easy to understand, but it cannot be trained gradually.</p></div>
+      <div class="card"><h3>Sigmoid</h3><p>A smooth switch from 0 to 1. Good for outputs that act like a confidence.</p></div>
+      <div class="card"><h3>Tanh</h3><p>Like sigmoid but centered on zero, running from −1 to 1.</p></div>
+      <div class="card"><h3>ReLU</h3><p>Passes positive numbers and turns negatives into 0. Simple and common in modern networks.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>From one neuron to a network</h2>
+    <p>A single neuron can only split the world with one straight line. That is enough to separate two clumps of points, or to behave like an AND or OR gate. It is not enough for XOR, where the two classes sit on opposite diagonals, or for a ring inside a ring.</p>
+    <p>The fix is to stack neurons in layers. Layers between the input and the output are called hidden. Each hidden neuron draws its own line, and the output neuron combines those lines into a curved or multi-part shape. In the network lab each small square shows what one neuron responds to across the whole board, so you can watch the pieces being combined.</p>
+  </section>
+
+  <section>
+    <h2>How the network learns</h2>
+    <p>Nobody sets the weights by hand. They start random, and training improves them in a loop.</p>
+    <ul>
+      <li><b>Guess.</b> Run every point through the network and get a prediction between 0 and 1.</li>
+      <li><b>Score.</b> Compute the <b>loss</b>, a single number for how wrong the guesses are. The app uses binary cross-entropy, which punishes confident wrong answers hard.</li>
+      <li><b>Blame.</b> <b>Backpropagation</b> works backwards through the layers to find how much each weight contributed to the error.</li>
+      <li><b>Nudge.</b> <b>Gradient descent</b> moves every weight a small step in the direction that lowers the loss. The app uses an optimizer called Adam, which adapts the step size per weight.</li>
+    </ul>
+    <p>Each press of Train repeats this loop many times a second. The loss chart falling is the network getting better, and the dark-ringed dots disappearing are the mistakes being fixed. The <b>Learning speed</b> setting is the step size: too slow and nothing seems to happen, too fast and the network can overshoot.</p>
+  </section>
+
+  <section>
+    <h2>Things to try</h2>
+    <ul>
+      <li>Open tab 1, pick <b>Should I go for a walk?</b> and raise the bias. Notice that the neuron says yes on a gloomy day.</li>
+      <li>Set both weights to 0 and watch the output ignore the inputs entirely.</li>
+      <li>In tab 2, train on <b>Two groups</b> with no hidden layers. One neuron is plenty.</li>
+      <li>Switch to <b>XOR</b> with no hidden layers. It never gets above about 75% correct.</li>
+      <li>Add one hidden layer with four neurons and train again. XOR is solved.</li>
+      <li>Try <b>Ring</b>, then remove neurons one at a time to find the smallest network that still works.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Under the hood</h2>
+    <p>Neuron Lab is plain HTML, CSS and JavaScript with no libraries and no build step. The network, the Adam optimizer and the backpropagation are written out in the page's own script, so you can read them. Training happens entirely in your browser, and nothing is sent anywhere.</p>
+    <p>Real networks follow the same idea at a vastly bigger scale: billions of weights instead of a few dozen, and many layers, but still weigh, sum, squash, score and nudge.</p>
+  </section>
+
+  <div class="top"><a href="index.html">← Back to Neuron Lab</a><a href="#top" onclick="window.scrollTo({top:0});return false">Back to top</a></div>
+</div>
+</body>
+</html>
